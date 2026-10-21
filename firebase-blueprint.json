@@ -1,0 +1,302 @@
+{
+  "entities": {
+    "Tournament": {
+      "title": "Tournament",
+      "description": "Sepak takraw tournament event information and configuration",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "description": "Unique tournament identifier"
+        },
+        "slug": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "URL slug"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Full name of the tournament"
+        },
+        "organizer": {
+          "type": "string",
+          "maxLength": 150,
+          "description": "Organization hosting the tournament, e.g., PSTI Kota Bandung"
+        },
+        "location": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Venue address or sports hall name"
+        },
+        "startDate": {
+          "type": "string",
+          "maxLength": 20,
+          "description": "Start date in ISO format YYYY-MM-DD"
+        },
+        "endDate": {
+          "type": "string",
+          "maxLength": 20,
+          "description": "End date in ISO format YYYY-MM-DD"
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000,
+          "description": "Detailed description and announcement"
+        },
+        "bannerUrl": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Image banner URL or local asset path"
+        },
+        "isPublished": {
+          "type": "boolean",
+          "description": "Public visibility flag"
+        },
+        "contactPerson": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Committee contact name"
+        },
+        "contactPhone": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Committee contact phone number"
+        }
+      },
+      "required": ["id", "name", "organizer", "location", "startDate", "endDate", "isPublished"]
+    },
+    "Team": {
+      "title": "Team",
+      "description": "Registered contingent or school sepak takraw regu",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "description": "Unique team ID"
+        },
+        "categoryId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "description": "Tournament category ID"
+        },
+        "coachId": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Coach user ID"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 150,
+          "description": "Team / Regu name"
+        },
+        "contingent": {
+          "type": "string",
+          "maxLength": 150,
+          "description": "City or club contingent"
+        },
+        "managerName": {
+          "type": "string",
+          "maxLength": 120,
+          "description": "Team manager name"
+        },
+        "coachName": {
+          "type": "string",
+          "maxLength": 120,
+          "description": "Team coach name"
+        },
+        "contactPhone": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Contact phone number"
+        },
+        "registrationStatus": {
+          "type": "string",
+          "enum": ["DRAFT", "SUBMITTED", "NEEDS_REVISION", "APPROVED", "REJECTED"],
+          "description": "Administrative registration review status"
+        },
+        "rejectionReason": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Reason if rejected or needs revision"
+        },
+        "groupSlotCode": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "Assigned group code, e.g., A1, A2, B1"
+        },
+        "checkInStatus": {
+          "type": "string",
+          "enum": ["BELUM_HADIR", "HADIR", "TIDAK_HADIR"],
+          "description": "Attendance re-registration status"
+        },
+        "checkInTime": {
+          "type": "string",
+          "maxLength": 40,
+          "description": "Re-registration timestamp"
+        },
+        "checkInBy": {
+          "type": "string",
+          "maxLength": 120,
+          "description": "Officer who checked in the team"
+        },
+        "checkInRepresentative": {
+          "type": "string",
+          "maxLength": 120,
+          "description": "Manager or coach representative present at the desk"
+        },
+        "checkInNotes": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Attendance notes"
+        },
+        "createdAt": {
+          "type": "string",
+          "maxLength": 40,
+          "description": "ISO creation timestamp"
+        }
+      },
+      "required": ["id", "categoryId", "name", "contingent", "registrationStatus"]
+    },
+    "Match": {
+      "title": "Match",
+      "description": "Sepak takraw match record with live scoring and sets",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "description": "Unique match identifier"
+        },
+        "matchCode": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Short code e.g. MK-01, SF-01"
+        },
+        "tournamentId": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Tournament ID"
+        },
+        "categoryId": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Category ID"
+        },
+        "stage": {
+          "type": "string",
+          "enum": ["GROUP_STAGE", "ROUND_OF_16", "QUARTER_FINAL", "SEMI_FINAL", "BRONZE_FINAL", "FINAL"],
+          "description": "Competition stage"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["SCHEDULED", "READY", "ON_GOING", "AWAITING_VERIFICATION", "COMPLETED", "POSTPONED", "CANCELLED", "WALKOVER"],
+          "description": "Match status"
+        },
+        "homeSetsWon": {
+          "type": "integer",
+          "description": "Total sets won by home team"
+        },
+        "awaySetsWon": {
+          "type": "integer",
+          "description": "Total sets won by away team"
+        },
+        "isVerified": {
+          "type": "boolean",
+          "description": "Whether match score is verified by referee commissioner / admin"
+        }
+      },
+      "required": ["id", "matchCode", "categoryId", "stage", "status", "isVerified"]
+    },
+    "User": {
+      "title": "User",
+      "description": "User profile with role-based access control",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "description": "Auth UID"
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 150,
+          "description": "User email address"
+        },
+        "fullName": {
+          "type": "string",
+          "maxLength": 150,
+          "description": "User full name"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["ADMIN", "WASIT", "PELATIH", "ATLET", "UMUM"],
+          "description": "User role"
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Phone number"
+        },
+        "isApproved": {
+          "type": "boolean",
+          "description": "Whether referee or coach role is approved by admin"
+        }
+      },
+      "required": ["id", "email", "fullName", "role", "isApproved"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Admin authorization entry",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "description": "Admin user UID"
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 150,
+          "description": "Admin email"
+        },
+        "grantedAt": {
+          "type": "string",
+          "maxLength": 40,
+          "description": "Timestamp when admin role was assigned"
+        }
+      },
+      "required": ["id", "email"]
+    }
+  },
+  "firestore": {
+    "/tournaments/{tournamentId}": {
+      "schema": "Tournament",
+      "description": "Tournament metadata and configuration"
+    },
+    "/teams/{teamId}": {
+      "schema": "Team",
+      "description": "Registered teams and rosters"
+    },
+    "/matches/{matchId}": {
+      "schema": "Match",
+      "description": "Tournament matches and live scores"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and assigned role"
+    },
+    "/admins/{adminId}": {
+      "schema": "Admin",
+      "description": "System and tournament administrator records"
+    }
+  }
+}
