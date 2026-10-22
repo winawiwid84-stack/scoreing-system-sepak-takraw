@@ -11,14 +11,14 @@ import {
 
 export const INITIAL_TOURNAMENT: Tournament = {
   id: 'trn-2026-001',
-  slug: 'kejuaraan-sepak-takraw-junior-2026',
-  name: 'Kejuaraan Sepak Takraw Kadet & Junior Tahun 2026',
+  slug: 'kejuaraan-sepak-takraw-u15-u18-2026',
+  name: 'Kejuaraan Sepak Takraw U15 & U18 Tahun 2026',
   organizer: 'Pengurus Cabang PSTI Kota Bandung bekerjasama dengan Dinas Pemuda & Olahraga',
   location: 'GOR Sepak Takraw, Lodaya Bandung',
   startDate: '2026-11-10',
   endDate: '2026-11-14',
   description:
-    'Turnamen resmi pembinaan atlet usia dini dan remaja se-Jawa Barat. Mempertandingkan kategori Kadet Putra/Putri dan Junior Putra/Putri dengan regulasi resmi ISTAF (International Sepaktakraw Federation).',
+    'Turnamen resmi pembinaan atlet usia dini dan remaja se-Jawa Barat. Mempertandingkan kategori U15 Putra/Putri dan U18 Putra/Putri dengan regulasi resmi ISTAF (International Sepaktakraw Federation).',
   bannerUrl: '/src/assets/images/hero_sepak_takraw_banner_1792478380267.jpg',
   isPublished: true,
   contactPerson: 'Sekretariat Panitia PSTI: Drs. H. Suryana',
@@ -128,8 +128,8 @@ export const INITIAL_CATEGORIES: Category[] = [
   {
     id: 'cat-kdt-pa',
     tournamentId: 'trn-2026-001',
-    name: 'Inter Regu Kadet Putra',
-    ageGroup: 'Kadet',
+    name: 'Inter Regu U15 Putra',
+    ageGroup: 'U15',
     gender: 'PUTRA',
     maxTeams: 12,
     groupCount: 4,
@@ -163,8 +163,8 @@ export const INITIAL_CATEGORIES: Category[] = [
   {
     id: 'cat-kdt-pi',
     tournamentId: 'trn-2026-001',
-    name: 'Inter Regu Kadet Putri',
-    ageGroup: 'Kadet',
+    name: 'Inter Regu U15 Putri',
+    ageGroup: 'U15',
     gender: 'PUTRI',
     maxTeams: 8,
     groupCount: 2,
@@ -194,8 +194,8 @@ export const INITIAL_CATEGORIES: Category[] = [
   {
     id: 'cat-jnr-pa',
     tournamentId: 'trn-2026-001',
-    name: 'Inter Regu Junior Putra',
-    ageGroup: 'Junior',
+    name: 'Inter Regu U18 Putra',
+    ageGroup: 'U18',
     gender: 'PUTRA',
     maxTeams: 12,
     groupCount: 4,
@@ -224,10 +224,41 @@ export const INITIAL_CATEGORIES: Category[] = [
       maxPlayersPerTeam: 5,
     },
   },
+  {
+    id: 'cat-jnr-pi',
+    tournamentId: 'trn-2026-001',
+    name: 'Inter Regu U18 Putri',
+    ageGroup: 'U18',
+    gender: 'PUTRI',
+    maxTeams: 8,
+    groupCount: 2,
+    advancingPerGroup: 2,
+    isDrawLocked: false,
+    regulation: {
+      numberOfSets: 3,
+      targetPointsPerSet: 21,
+      deuceEnabled: true,
+      deuceMaxPoints: 25,
+      tiebreakPoints: 21,
+      bronzeMatchFormat: 'SHARED', // Juara 3 Bersama
+      pointsWin: 2,
+      pointsLoss: 0,
+      pointsWalkoverWin: 2,
+      pointsWalkoverLoss: 0,
+      tieBreakerOrder: [
+        'POINTS',
+        'HEAD_TO_HEAD',
+        'SET_DIFFERENCE',
+        'POINT_DIFFERENCE',
+      ],
+      minPlayersPerTeam: 3,
+      maxPlayersPerTeam: 5,
+    },
+  },
 ];
 
 export const INITIAL_TEAMS: Team[] = [
-  // --- KADET PUTRA (12 Regu sesuai Excel) ---
+  // --- U15 PUTRA (12 Regu sesuai Excel) ---
   {
     id: 'team-kdt-01',
     categoryId: 'cat-kdt-pa',
@@ -539,7 +570,7 @@ export const INITIAL_TEAMS: Team[] = [
 ];
 
 export const INITIAL_GROUPS: TournamentGroup[] = [
-  // Kadet Putra
+  // U15 Putra
   {
     id: 'grp-kdt-a',
     categoryId: 'cat-kdt-pa',
@@ -976,7 +1007,7 @@ export const INITIAL_AUDIT_LOGS: AuditLog[] = [
   {
     id: 'log-001',
     actionType: 'DRAW_CONDUCTED',
-    entityName: 'Kategori Kadet Putra',
+    entityName: 'Kategori U15 Putra',
     entityId: 'cat-kdt-pa',
     performedBy: 'Drs. Budi Santoso (Admin PSTI)',
     userRole: 'ADMIN',

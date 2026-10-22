@@ -61,7 +61,7 @@ export const TeamVerification: React.FC = () => {
             <span>Verifikasi & Keabsahan Regu & Atlet</span>
           </h2>
           <p className="text-xs text-slate-400 mt-1">
-            Pemeriksaan dokumen identitas, nomor punggung, posisi resmi, dan kelayakan usia atlet kategori Kadet/Junior.
+            Pemeriksaan dokumen identitas, nomor punggung, posisi resmi, dan kelayakan usia atlet kategori U15 dan U18 (Putra & Putri).
           </p>
         </div>
 

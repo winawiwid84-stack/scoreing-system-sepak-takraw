@@ -2,7 +2,5 @@
   "name": "Sistem Scoring Sepak Takraw - Turnamen Nasional & Daerah",
   "description": "Aplikasi scoring system dan manajemen turnamen sepak takraw lengkap: pendaftaran tim & atlet, pengundian grup, jadwal lapangan, digital scoreboard wasit, klasemen otomatis, bagan sistem gugur, dan pengesahan hasil.",
   "requestFramePermissions": [],
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
+  "majorCapabilities": []
 }

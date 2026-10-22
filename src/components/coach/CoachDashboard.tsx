@@ -132,7 +132,7 @@ export const CoachDashboard: React.FC = () => {
           </h1>
           <p className="text-xs text-slate-300 mt-1">
             {coachTeam
-              ? `${coachTeam.contingent} · Kategori: ${category?.name || 'Kadet'}`
+              ? `${coachTeam.contingent} · Kategori: ${category?.name || 'U15 / U18'}`
               : 'Silakan daftarkan tim binaan Anda untuk berpartisipasi dalam kejuaraan.'}
           </p>
         </div>

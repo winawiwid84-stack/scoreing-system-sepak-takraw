@@ -107,8 +107,8 @@ export interface CategoryRegulation {
 export interface Category {
   id: string;
   tournamentId: string;
-  name: string; // e.g. "Inter Regu Kadet Putra"
-  ageGroup: 'Kadet' | 'Junior' | 'Senior' | 'Umum';
+  name: string; // e.g. "Inter Regu U15 Putra"
+  ageGroup: 'U15' | 'U18' | 'Junior' | 'Senior' | 'Umum';
   gender: 'PUTRA' | 'PUTRI' | 'CAMPURAN';
   maxTeams: number;
   regulation: CategoryRegulation;

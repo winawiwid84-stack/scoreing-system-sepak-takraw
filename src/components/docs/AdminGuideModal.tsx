@@ -35,7 +35,7 @@ export const AdminGuideModal: React.FC<AdminGuideModalProps> = ({
       desc: 'Tentukan identitas kejuaraan dan parameter teknis pertandingan yang fleksibel.',
       actions: [
         'Atur Nama, Lokasi, dan Tanggal Turnamen di Panel Admin.',
-        'Buat Kategori (contoh: Inter Regu Kadet Putra/Putri, Junior Putra/Putri).',
+        'Buat Kategori (contoh: Inter Regu U15 Putra/Putri, U18 Putra/Putri).',
         'Sesuaikan Regulasi: Target skor per set (default 21 poin), aturan Deuce (batas cap 25), jumlah set (Best of 3), dan format Perebutan Juara 3 (Tanding vs Juara 3 Bersama).',
         'Tentukan urutan kriteria Tie-Breaker klasemen (Poin -> Head-to-Head -> Selisih Set -> Selisih Poin).',
       ],
@@ -49,7 +49,7 @@ export const AdminGuideModal: React.FC<AdminGuideModalProps> = ({
       actions: [
         'Buka tab "Verifikasi Tim" di Panel Admin.',
         'Periksa kelengkapan 3 pemain inti (Tekong, Apit Kanan, Apit Kiri) dan maksimal 2 cadangan.',
-        'Verifikasi NIK/NISN atau dokumen akta lahir untuk kategori usia Kadet & Junior.',
+        'Verifikasi NIK/NISN atau dokumen akta lahir untuk kategori usia U15 & U18 (Putra/Putri).',
         'Ubah status pendaftaran dari SUBMITTED menjadi APPROVED (atau tolak dengan catatan perbaikan).',
         'Gunakan menu "Daftar Ulang Peserta" pada saat kedatangan tim di lokasi GOR untuk mencatat kehadiran fisik pelatih, atlet, dan seragam.',
       ],

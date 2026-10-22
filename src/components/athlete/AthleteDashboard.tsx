@@ -30,7 +30,7 @@ export const AthleteDashboard: React.FC = () => {
           </div>
           <h1 className="text-xl font-extrabold text-white">{currentUser.fullName}</h1>
           <p className="text-xs text-slate-300 mt-1">
-            Atlet Regu {myTeam ? myTeam.name : '-'} · {category?.name || 'Kategori Kadet'}
+            Atlet Regu {myTeam ? myTeam.name : '-'} · {category?.name || 'Kategori U15 / U18'}
           </p>
         </div>
 

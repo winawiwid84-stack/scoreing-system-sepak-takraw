@@ -156,17 +156,23 @@ interface TournamentContextType {
 
 const TournamentContext = createContext<TournamentContextType | undefined>(undefined);
 
-const STORAGE_KEY_PREFIX = 'sepak_takraw_tournament_v1_';
+const STORAGE_KEY_PREFIX = 'sepak_takraw_tournament_v2_';
 
 export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Load initial from local storage or fallback to demo data
   const [tournament, setTournamentState] = useState<Tournament>(() => {
-    const saved = localStorage.getItem(STORAGE_KEY_PREFIX + 'tournament');
+    const saved = localStorage.getItem(STORAGE_KEY_PREFIX + 'tournament') || localStorage.getItem('sepak_takraw_tournament_v1_tournament');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
         if (parsed.location?.includes('Tri Lomba Juang')) {
           parsed.location = 'GOR Sepak Takraw, Lodaya Bandung';
+        }
+        if (parsed.name?.includes('Kadet')) {
+          parsed.name = parsed.name.replace(/Kadet\s*&\s*Junior/gi, 'U15 & U18').replace(/Kadet/gi, 'U15');
+        }
+        if (parsed.description?.includes('Kadet')) {
+          parsed.description = parsed.description.replace(/Kadet\s*Putra\/Putri\s*dan\s*Junior\s*Putra\/Putri/gi, 'U15 Putra/Putri dan U18 Putra/Putri').replace(/Kadet/gi, 'U15');
         }
         return parsed;
       } catch {
@@ -177,8 +183,26 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   });
 
   const [categories, setCategoriesState] = useState<Category[]>(() => {
-    const saved = localStorage.getItem(STORAGE_KEY_PREFIX + 'categories');
-    return saved ? JSON.parse(saved) : INITIAL_CATEGORIES;
+    const saved = localStorage.getItem(STORAGE_KEY_PREFIX + 'categories') || localStorage.getItem('sepak_takraw_tournament_v1_categories');
+    if (saved) {
+      try {
+        const parsed: Category[] = JSON.parse(saved);
+        return parsed.map((c) => ({
+          ...c,
+          name: c.name
+            .replace(/Kadet\s*Putra/gi, 'U15 Putra')
+            .replace(/Kadet\s*Putri/gi, 'U15 Putri')
+            .replace(/Junior\s*Putra/gi, 'U18 Putra')
+            .replace(/Junior\s*Putri/gi, 'U18 Putri')
+            .replace(/Kadet/gi, 'U15')
+            .replace(/Junior/gi, 'U18'),
+          ageGroup: ((c.ageGroup as string) === 'Kadet' ? 'U15' : (c.ageGroup as string) === 'Junior' ? 'U18' : c.ageGroup),
+        }));
+      } catch {
+        return INITIAL_CATEGORIES;
+      }
+    }
+    return INITIAL_CATEGORIES;
   });
 
   const [courts, setCourtsState] = useState<Court[]>(() => {
@@ -601,7 +625,7 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       startDate: '2026-11-10',
       endDate: '2026-11-14',
       description:
-        'Kejuaraan resmi Sepak Takraw PSTI Kota Bandung tahun 2026 tingkat Kadet dan Junior dengan regulasi resmi ISTAF (International Sepaktakraw Federation).',
+        'Kejuaraan resmi Sepak Takraw PSTI Kota Bandung tahun 2026 tingkat U15 dan U18 (Putra & Putri) dengan regulasi resmi ISTAF (International Sepaktakraw Federation).',
       bannerUrl: '/src/assets/images/hero_sepak_takraw_banner_1792478380267.jpg',
       isPublished: true,
       contactPerson: 'Sekretariat PSTI Kota Bandung: Drs. H. Suryana',
@@ -612,8 +636,8 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       {
         id: 'cat-kdt-pa',
         tournamentId: officialTournament.id,
-        name: 'Inter-Regu Kadet Putra (U-15)',
-        ageGroup: 'Kadet',
+        name: 'Inter-Regu U15 Putra',
+        ageGroup: 'U15',
         gender: 'PUTRA',
         maxTeams: 16,
         groupCount: 4,
@@ -645,8 +669,8 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       {
         id: 'cat-kdt-pi',
         tournamentId: officialTournament.id,
-        name: 'Inter-Regu Kadet Putri (U-15)',
-        ageGroup: 'Kadet',
+        name: 'Inter-Regu U15 Putri',
+        ageGroup: 'U15',
         gender: 'PUTRI',
         maxTeams: 12,
         groupCount: 4,
@@ -678,8 +702,8 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       {
         id: 'cat-jnr-pa',
         tournamentId: officialTournament.id,
-        name: 'Inter-Regu Junior Putra (U-18)',
-        ageGroup: 'Junior',
+        name: 'Inter-Regu U18 Putra',
+        ageGroup: 'U18',
         gender: 'PUTRA',
         maxTeams: 16,
         groupCount: 4,
@@ -711,8 +735,8 @@ export const TournamentProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       {
         id: 'cat-jnr-pi',
         tournamentId: officialTournament.id,
-        name: 'Inter-Regu Junior Putri (U-18)',
-        ageGroup: 'Junior',
+        name: 'Inter-Regu U18 Putri',
+        ageGroup: 'U18',
         gender: 'PUTRI',
         maxTeams: 12,
         groupCount: 4,
