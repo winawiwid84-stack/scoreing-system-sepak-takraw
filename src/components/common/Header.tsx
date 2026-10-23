@@ -12,6 +12,8 @@ import {
   BookOpen,
   ChevronDown,
   User,
+  MapPin,
+  Cloud,
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -276,6 +278,28 @@ export const Header: React.FC<HeaderProps> = ({
             Daftar Juara
           </button>
 
+          <button
+            onClick={() => setCurrentTab('venue')}
+            className={`flex items-center gap-1.5 whitespace-nowrap shrink-0 transition-colors ${
+              currentTab === 'venue' ? 'text-amber-400 font-semibold' : 'hover:text-white'
+            }`}
+          >
+            <MapPin className="w-3.5 h-3.5 text-amber-400" />
+            <span>Lokasi GOR</span>
+          </button>
+
+          <button
+            onClick={() => setCurrentTab('workspace')}
+            className={`flex items-center gap-1.5 whitespace-nowrap shrink-0 px-2.5 py-1 rounded-lg border transition-all ${
+              currentTab === 'workspace'
+                ? 'bg-blue-500/20 text-blue-300 border-blue-500/40 font-bold'
+                : 'text-slate-300 hover:text-white border-slate-800 bg-slate-900/60'
+            }`}
+          >
+            <Cloud className="w-3.5 h-3.5 text-blue-400" />
+            <span>Google Hub</span>
+          </button>
+
           {/* Role-specific Workspace Tab */}
           {currentUser.role === 'ADMIN' && (
             <button
@@ -402,6 +426,24 @@ export const Header: React.FC<HeaderProps> = ({
           }`}
         >
           Juara
+        </button>
+        <button
+          onClick={() => setCurrentTab('venue')}
+          className={`flex items-center gap-1 px-3 py-1.5 rounded-lg whitespace-nowrap shrink-0 ${
+            currentTab === 'venue' ? 'bg-amber-500 text-slate-950 font-bold' : 'text-slate-300'
+          }`}
+        >
+          <MapPin className="w-3.5 h-3.5 text-amber-400" />
+          <span>Lokasi GOR</span>
+        </button>
+        <button
+          onClick={() => setCurrentTab('workspace')}
+          className={`flex items-center gap-1 px-3 py-1.5 rounded-lg whitespace-nowrap shrink-0 ${
+            currentTab === 'workspace' ? 'bg-blue-500 text-white font-bold' : 'text-blue-300 border border-blue-500/30'
+          }`}
+        >
+          <Cloud className="w-3.5 h-3.5" />
+          <span>Google Hub</span>
         </button>
 
         {currentUser.role === 'ADMIN' && (

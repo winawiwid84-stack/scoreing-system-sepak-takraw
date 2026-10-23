@@ -20,6 +20,8 @@ import { AuthModal } from './components/auth/AuthModal';
 import { AuthPage } from './components/auth/AuthPage';
 import { ScoreToastContainer } from './components/notifications/ScoreToastContainer';
 import { DualScoreboardView } from './components/scoreboard/DualScoreboardView';
+import { VenueMap } from './components/venue/VenueMap';
+import { GoogleWorkspaceHub } from './components/workspace/GoogleWorkspaceHub';
 
 const MainContent: React.FC = () => {
   const {
@@ -58,6 +60,8 @@ const MainContent: React.FC = () => {
         {currentTab === 'klasemen' && <StandingsTable />}
         {currentTab === 'bagan' && <TournamentBracket />}
         {currentTab === 'podium' && <PodiumView />}
+        {currentTab === 'venue' && <VenueMap />}
+        {currentTab === 'workspace' && <GoogleWorkspaceHub />}
         {currentTab === 'admin' && <AdminDashboard />}
         {currentTab === 'wasit' && <RefereeDashboard onNavigateTab={setCurrentTab} />}
         {currentTab === 'pelatih' && <CoachDashboard />}

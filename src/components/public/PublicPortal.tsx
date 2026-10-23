@@ -132,6 +132,21 @@ export const PublicPortal: React.FC<PublicPortalProps> = ({ onNavigateTab }) => 
             >
               <span>Bagan Sistem Gugur</span>
             </button>
+
+            <button
+              onClick={() => onNavigateTab('venue')}
+              className="flex items-center gap-2 px-5 py-2.5 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-bold text-xs rounded-xl border border-amber-500/40 shadow-md transition-colors cursor-pointer"
+            >
+              <MapPin className="w-4 h-4 text-amber-400" />
+              <span>Peta & Lokasi GOR</span>
+            </button>
+
+            <button
+              onClick={() => onNavigateTab('workspace')}
+              className="flex items-center gap-2 px-5 py-2.5 bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 font-bold text-xs rounded-xl border border-blue-500/40 shadow-md transition-colors cursor-pointer"
+            >
+              <span>Google Cloud & Drive</span>
+            </button>
           </div>
         </div>
       </div>
